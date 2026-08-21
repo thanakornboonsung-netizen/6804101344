@@ -31,7 +31,7 @@
       <!-- ยอมรับเงื่อนไข -->
       <q-toggle
         v-model="accept"
-        label="I accept the license and terms"
+        label="I accept the license and terms (我接受许可和条款语言)"
       />
 
       <div>
