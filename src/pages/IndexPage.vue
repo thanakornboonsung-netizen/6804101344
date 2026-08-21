@@ -1,59 +1,29 @@
 <template>
   <q-page class="q-pa-md">
-    <q-form
-      class="q-gutter-md"
-      style="max-width: 600px"
-      @submit="onSubmit"
-      @reset="onReset"
-    >
+    <q-form class="q-gutter-md" style="max-width: 600px" @submit="onSubmit" @reset="onReset">
       <!-- ชื่อ -->
-      <q-input
-        filled
-        v-model="name"
-        label="Your name (ชื่อ-สกุล)*"
-        hint="Name and surname"
-        :rules="[
-          val => !!val || 'Please enter your name'
-        ]"
-      />
+      <q-input filled v-model="name" label="Your name (ชื่อ-สกุล)*" hint="Name and surname" :rules="[
+        val => !!val || 'Please enter your name'
+      ]" />
 
       <!-- อายุ -->
-      <q-input
-        filled
-        v-model.number="age"
-        type="number"
-        label="Your age(อายุ) *"
-        :rules="[
-          val => val !== null && val !== '' || 'Please enter your age'
-        ]"
-      />
+      <q-input filled v-model.number="age" type="number" label="Your age(อายุ) *" :rules="[
+        val => val !== null && val !== '' || 'Please enter your age'
+      ]" />
 
       <!-- ยอมรับเงื่อนไข -->
-      <q-toggle
-        v-model="accept"
-        label="I accept the license and terms (我接受许可和条款语言)"
-      />
+      <q-toggle v-model="accept" label="I accept the license and terms (我接受许可和条款语言)" />
 
       <div>
-        <q-btn
-          label="SUBMIT (提出する)"
-          type="submit"
-          color="primary"
-        />
+        <q-btn label="SUBMIT (提出する)" type="submit" color="primary" />
 
-        <q-btn
-          label="RESET (リセット)"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-        />
+        <q-btn label="RESET (リセット)" type="reset" color="primary" flat class="q-ml-sm" />
       </div>
     </q-form>
   </q-page>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 
@@ -62,7 +32,7 @@ const name = ref('')
 const age = ref(null)
 const accept = ref(false)
 
-function onSubmit () {
+function onSubmit() {
   if (accept.value !== true) {
     $q.notify({
       type: 'negative',
@@ -76,7 +46,7 @@ function onSubmit () {
   }
 }
 
-function onReset () {
+function onReset() {
   name.value = ''
   age.value = null
   accept.value = false
