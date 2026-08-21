@@ -1,17 +1,77 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="column items-center">
-      <img
-        alt="Quasar logo"
-        src="~@/assets/quasar-logo-vertical.svg"
-        style="width: 200px; height: 200px"
+  <q-page class="q-pa-md">
+    <q-form
+      class="q-gutter-md"
+      style="max-width: 600px"
+      @submit="onSubmit"
+      @reset="onReset"
+    >
+      <!-- ชื่อ -->
+      <q-input
+        filled
+        v-model="name"
+        label="Your name *"
+        hint="Name and surname"
+        :rules="[
+          val => !!val || 'Please enter your name'
+        ]"
       />
 
-      <q-btn class="q-mt-md" color="primary" to="/second" label="Go to Second Page" no-caps />
-    </div>
+      <!-- อายุ -->
+      <q-input
+        filled
+        v-model.number="age"
+        type="number"
+        label="Your age *"
+        :rules="[
+          val => val !== null && val !== '' || 'Please enter your age'
+        ]"
+      />
+
+      <!-- ยอมรับเงื่อนไข -->
+      <q-toggle
+        v-model="accept"
+        label="I accept the license and terms"
+      />
+
+      <div>
+        <q-btn
+          label="SUBMIT"
+          type="submit"
+          color="primary"
+        />
+
+        <q-btn
+          label="RESET"
+          type="reset"
+          color="primary"
+          flat
+          class="q-ml-sm"
+        />
+      </div>
+    </q-form>
   </q-page>
 </template>
 
-<script setup lang="ts">
-//
+<script setup>
+import { ref } from 'vue'
+
+const name = ref('')
+const age = ref(null)
+const accept = ref(false)
+
+function onSubmit () {
+  if (!accept.value) {
+    alert('Please accept the license and terms')
+    return
+  }
+
+  alert(`Name: ${name.value}\nAge: ${age.value}`)
+}
+
+function onReset () {
+  name.value = ''
+  age.value = null
+  accept.value = false
+}
 </script>
