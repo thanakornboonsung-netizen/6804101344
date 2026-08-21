@@ -10,7 +10,7 @@
       <q-input
         filled
         v-model="name"
-        label="Your name *"
+        label="Your name (ชื่อ-สกุล)*"
         hint="Name and surname"
         :rules="[
           val => !!val || 'Please enter your name'
@@ -22,7 +22,7 @@
         filled
         v-model.number="age"
         type="number"
-        label="Your age *"
+        label="Your age(อายุ) *"
         :rules="[
           val => val !== null && val !== '' || 'Please enter your age'
         ]"
