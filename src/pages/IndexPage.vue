@@ -36,13 +36,13 @@
 
       <div>
         <q-btn
-          label="SUBMIT"
+          label="SUBMIT (提出する)"
           type="submit"
           color="primary"
         />
 
         <q-btn
-          label="RESET"
+          label="RESET (リセット)"
           type="reset"
           color="primary"
           flat
